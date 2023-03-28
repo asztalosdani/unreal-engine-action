@@ -42,7 +42,7 @@ async function run(): Promise<void> {
         }
       }
     }
-    await exec.exec(`"${automationExecutable}"`, ['BuildPlugin', `-Plugin=${pluginPath}`, `-Package=${outputPath}`, '-Rocket'], options)
+    await exec.exec(`"${automationExecutable}"`, ['BuildPlugin', `-Plugin=${pluginPath}`, `-Package=${outputPath}`, '-NoHostPlatform'], options)
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }
