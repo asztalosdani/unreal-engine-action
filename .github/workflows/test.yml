@@ -21,6 +21,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./
         with:
-          unreal-engine-version: 5.0
+          unreal-engine-version: "5.0"
           plugin-path: ${{ github.workspace }}/resources/MyPlugin/MyPlugin.uplugin
           output-path: ${{ github.workspace }}/build
