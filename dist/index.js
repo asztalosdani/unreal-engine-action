@@ -61,7 +61,7 @@ function run() {
             const automationPath = (0, utilities_1.getAutomationToolExecutablePath)(unrealEngineVersion);
             core.debug(`Automation path: ${automationPath}`);
             const automationExecutable = path_1.default.join(installPath, automationPath);
-            core.error(`Automation full path: ${automationExecutable}`);
+            core.debug(`Automation full path: ${automationExecutable}`);
             const options = {
                 // cwd: workingDirectory,
                 silent: true,
@@ -69,10 +69,10 @@ function run() {
                     stdout: (data) => {
                         const message = data.toString().trim();
                         // console.log(message)
-                        if (message.match('.*\\((\\d*)\\): fatal error ([\\w\\d]*): .*')) {
+                        if (message.match('.*\\((\\d*)\\): fatal error ([\\w\\d]*): .*') || message.match('ERROR: .*')) {
                             core.error(message);
                         }
-                        else if (message.match('.*\\((\\d*)\\): warning ([\\w\\d]*): .*')) {
+                        else if (message.match('.*\\((\\d*)\\): warning ([\\w\\d]*): .*') || message.match('WARNING: .*')) {
                             core.warning(message);
                         }
                         else {
