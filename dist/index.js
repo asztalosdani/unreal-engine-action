@@ -84,7 +84,7 @@ function run() {
                     }
                 }
             };
-            yield exec.exec(`"${automationExecutable}"`, ['BuildPlugin', `-Plugin=${pluginPath}`, `-Package=${outputPath}`, '-NoHostPlatform'], options);
+            yield exec.exec(`"${automationExecutable}"`, ['BuildPlugin', `-Plugin=${pluginPath}`, `-Package=${outputPath}`, '-Rocket'], options);
         }
         catch (error) {
             if (error instanceof Error)
