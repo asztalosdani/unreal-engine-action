@@ -17,10 +17,13 @@ jobs:
           npm run all
   test: # make sure the action works on a clean machine without building
     runs-on: [self-hosted, windows, x64, unreal]
+    strategy:
+      matrix:
+        ue-version: [ "4.27", "5.0", "5.1" ]
     steps:
       - uses: actions/checkout@v3
       - uses: ./
         with:
-          unreal-engine-version: "5.0"
+          unreal-engine-version: ${{ matrix.ue-version }}
           plugin-path: ${{ github.workspace }}/resources/MyPlugin/MyPlugin.uplugin
           output-path: ${{ github.workspace }}/build
