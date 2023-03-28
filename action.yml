@@ -1,11 +1,16 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Unreal Engine Action'
+description: 'Build an Unreal Engine plugin or project'
+author: 'Daniel Asztalos'
 inputs:
-  milliseconds: # change this
+  unreal-engine-version:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'The version of Unreal Engine to use'
+  plugin-path:
+    required: true
+    description: 'The path to the plugin to be built'
+  output-path:
+    required: true
+    description: 'The path of the output'
 runs:
   using: 'node16'
   main: 'dist/index.js'
