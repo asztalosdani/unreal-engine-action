@@ -7,7 +7,7 @@ import {expect, test} from '@jest/globals'
 // shows how the runner will run a javascript action with env / stdout protocol
 test('test runs', () => {
   process.env['INPUT_UNREAL-ENGINE-VERSION'] = '5.0'
-  process.env['INPUT_PLUGIN-PATH'] = 'd:/temp/TestPlugin/TestPlugin.uplugin'
+  process.env['INPUT_PLUGIN-PATH'] = path.join(__dirname, '..', 'resources', 'MyPlugin', 'MyPlugin.uplugin')
   process.env['INPUT_OUTPUT-PATH'] = 'd:/temp/outci'
   const np = process.execPath
   const ip = path.join(__dirname, '..', 'lib', 'main.js')
