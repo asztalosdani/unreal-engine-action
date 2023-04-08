@@ -9,6 +9,7 @@ async function run(): Promise<void> {
     const unrealEngineVersion: string = core.getInput('unreal-engine-version')
     const pluginPath: string = core.getInput('plugin-path')
     const outputPath: string = core.getInput('output-path')
+    const vs2019: boolean = core.getBooleanInput('VS2019')
 
     const installPath = getUnrealEngineInstallPath(unrealEngineVersion)
     if (!installPath) {
@@ -42,7 +43,12 @@ async function run(): Promise<void> {
         }
       }
     }
-    await exec.exec(`"${automationExecutable}"`, ['BuildPlugin', `-Plugin=${pluginPath}`, `-Package=${outputPath}`, '-Rocket'], options)
+    let args = ['BuildPlugin', `-Plugin=${pluginPath}`, `-Package=${outputPath}`, '-Rocket'];
+    if (vs2019) {
+      args.push('-VS2019')
+    }
+
+    await exec.exec(`"${automationExecutable}"`, args, options);
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }

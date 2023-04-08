@@ -11,6 +11,10 @@ inputs:
   output-path:
     required: true
     description: 'The path of the output'
+  VS2019:
+    description: 'Use Visual Studio 2019 for compiling all targets'
+    required: false
+    default: 'false'
 runs:
   using: 'node16'
   main: 'dist/index.js'
