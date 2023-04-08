@@ -52,6 +52,7 @@ function run() {
             const unrealEngineVersion = core.getInput('unreal-engine-version');
             const pluginPath = core.getInput('plugin-path');
             const outputPath = core.getInput('output-path');
+            const vs2019 = core.getBooleanInput('VS2019');
             const installPath = (0, utilities_1.getUnrealEngineInstallPath)(unrealEngineVersion);
             if (!installPath) {
                 core.setFailed(`Unreal Engine version ${unrealEngineVersion} not found.`);
@@ -84,7 +85,11 @@ function run() {
                     }
                 }
             };
-            yield exec.exec(`"${automationExecutable}"`, ['BuildPlugin', `-Plugin=${pluginPath}`, `-Package=${outputPath}`, '-Rocket'], options);
+            let args = ['BuildPlugin', `-Plugin=${pluginPath}`, `-Package=${outputPath}`, '-Rocket'];
+            if (vs2019) {
+                args.push('-VS2019');
+            }
+            yield exec.exec(`"${automationExecutable}"`, args, options);
         }
         catch (error) {
             if (error instanceof Error)
