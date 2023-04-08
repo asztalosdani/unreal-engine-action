@@ -27,4 +27,4 @@ jobs:
           unreal-engine-version: ${{ matrix.ue-version }}
           plugin-path: ${{ github.workspace }}/resources/MyPlugin/MyPlugin.uplugin
           output-path: ${{ github.workspace }}/build
-          VS2019: ${{ matrix.ue-version == 4.27 }}
+          VS2019: ${{ matrix.ue-version == '4.27' }}
